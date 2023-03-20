@@ -6405,6 +6405,11 @@ launch-editor@^2.6.0:
     picocolors "^1.0.0"
     shell-quote "^1.7.3"
 
+lesca-react-scratch-card@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/lesca-react-scratch-card/-/lesca-react-scratch-card-1.0.3.tgz#ab0fc81834953897ed6edfc147ea019a981056ca"
+  integrity sha512-l8WAethDRvUTVFkw+VTkWN5SPg6B8xy3NITuMougmPCwDzzQkP61prz+WnuNvDpZGSzY5qBGnJ0TVRFJb3ohbQ==
+
 leven@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
