@@ -3,7 +3,8 @@ import Button from "@mui/material/Button";
 import React from "react";
 import axios from "axios";
 import ScratchCard from 'lesca-react-scratch-card';
-import CoverImage from 'src/img/scratch-off-bg.jpg';
+import CoverImage from '../img/scratch-off-bg.jpg';
+import Cherry from "../img/cherry.png";
 
 const ScratchOffs = () => {
 
@@ -23,9 +24,7 @@ const ScratchOffs = () => {
     <>
       <h1>Scratch Offs</h1>
       <br />
-      <div style={{ display: "inline-flex" }}>
-        <Box sx={{ flexGrow: 1, display: "inline-block" }}>
-          <ScratchCard
+      <ScratchCard
             cover={CoverImage}
             percent={50}
             width={225}
@@ -34,14 +33,11 @@ const ScratchOffs = () => {
               // ...script
             }}
           >
-            <div style={{
-              width: "100%",
-              height: "100%",
-              backgroundImage: `url(../img/cherry.png)`
-            }}>
-            </div>
-            {/* <img src="src/img/cherry.png" alt="cherry"  /> //To test local image load*/}
+            <img src={Cherry} alt="cherry"  />
           </ScratchCard>
+      <div style={{ display: "inline-flex" }}>
+        <Box sx={{ flexGrow: 1, display: "inline-block" }}>
+          
         </Box>
         <Box sx={{ flexGrow: 1 }}>
           <Button style={{
