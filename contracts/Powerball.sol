@@ -1,6 +1,6 @@
-pragma solidity ^0.7.4;
+pragma solidity ^0.5.16;
 
-contract SimpleStorage {
+contract Powerball {
     uint public winning_number;
 
     // You can read from a state variable without sending a transaction.
