@@ -22,9 +22,12 @@ const ScratchOffs = () => {
   }
   return (
     <>
-      <h1>Scratch Offs</h1>
+      <h1 style={{textShadow: "none"}}>Scratch Offs</h1>
       <br />
-      <ScratchCard
+      
+      <div style={{ display: "inline-flex" }}>
+     
+        <ScratchCard
             cover={CoverImage}
             percent={50}
             width={225}
@@ -35,36 +38,7 @@ const ScratchOffs = () => {
           >
             <img src={Cherry} alt="cherry"  />
           </ScratchCard>
-      <div style={{ display: "inline-flex" }}>
-        <Box sx={{ flexGrow: 1, display: "inline-block" }}>
-          
-        </Box>
-        <Box sx={{ flexGrow: 1 }}>
-          <Button style={{
-            width: 225,
-            height: 225,
-            borderColor: "black",
-            color: "black",
-            borderRadius: 0,
-            margin: "1em",
-            boxShadow: "5px 10px #888888",
-            backgroundColor: "blue"
-          }}
-            variant="outlined"><strong></strong></Button>
-        </Box>
-        <Box sx={{ flexGrow: 1 }}>
-          <Button style={{
-            width: 225,
-            height: 225,
-            borderColor: "black",
-            color: "black",
-            borderRadius: 0,
-            margin: "1em",
-            boxShadow: "5px 10px #888888",
-            backgroundColor: "blue"
-          }}
-            variant="outlined"><strong></strong></Button>
-        </Box>
+     
       </div>
     </>
 

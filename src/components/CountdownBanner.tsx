@@ -45,7 +45,7 @@ const CountdownBanner = () => {
 
   return (
     <>
-      <div id="countdown"></div>
+      <div id="countdown" style={{textShadow: "none"}}></div>
     </>
   );
 };

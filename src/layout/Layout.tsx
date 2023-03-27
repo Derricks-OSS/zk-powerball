@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import CasinoIcon from '@mui/icons-material/Casino';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from "@mui/material/Toolbar";
+import Chip from "@mui/material/Chip";
 
 const Layout = (properties: any) => {
   const { children } = properties;
@@ -32,7 +33,8 @@ const Layout = (properties: any) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const wallet = false; // TODO: remove after adding state hook
+  const walletBalance = 5.3433;
   return (
     <>
       <AppBar position="static">
@@ -111,19 +113,19 @@ const Layout = (properties: any) => {
               ZK Powerball
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
+              <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 href="/about"
               >
-               About
+                About
               </Button>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 href="/powerball"
               >
-               Powerball
+                Powerball
               </Button>
               <Button
                 onClick={handleCloseNavMenu}
@@ -143,7 +145,11 @@ const Layout = (properties: any) => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Derrick" src="" />
+                  <Chip
+                    avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
+                    label={`${walletBalance}` + " ETH"}
+                    style={{backgroundColor: "white"}}
+                  />
                 </IconButton>
               </Tooltip>
               <Menu

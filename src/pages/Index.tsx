@@ -1,46 +1,67 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import React from "react";
-import CountdownBanner from "../components/CountdownBanner";
+import React, { Fragment, useEffect, useRef } from "react";
+import GraphicBackground from "../components/GraphicBackground";
 
-
+const wallet = false; // TODO: remove this is just for testing
 const Index = () => {
+
   return (
     <>
       <br />
-      <h1>Jackpot: 38.976 ETH</h1>
-      <br />
-<CountdownBanner></CountdownBanner>
-      <br />
-      <img src="https://cdn.dribbble.com/users/23438/screenshots/3107987/loto-icon.gif" alt="img" />{/* height="200vw" width="200vh"*/}
-      <p style={{ margin: "auto" }}>Buy a Powerball ticket for this drawing or purchase a scratch-off for a chance at instant winnings.</p>
-      <br />
-      <div>
-        <Box sx={{ flexGrow: 1 }}>
-          <Button style={{
-            width: 225,
-            borderColor: "black",
-            color: "black",
-            borderRadius: 0,
-            margin: "1em",
-            boxShadow: "5px 10px #888888"
-          }}
-            href="/pageone"
-            variant="outlined"><strong>Buy Ticket</strong></Button>
-        </Box>
-        <Box sx={{ flexGrow: 1 }}>
-          <Button style={{
-            width: 225,
-            borderColor: "black",
-            color: "black",
-            borderRadius: 0,
-            margin: "1em",
-            boxShadow: "5px 10px #888888"
-          }}
-            href="/pagetwo"
-            variant="outlined"><strong>Buy Scratch-Off</strong></Button>
-        </Box>
+      <div style={{
+        position: "absolute",
+        top: "50%",
+        left: "45%",
+        display: "inline"
+      }}>
+        {!wallet
+          ? <>
+            <Box sx={{ flexGrow: 1 }}>
+              <Button style={{
+                width: 225,
+                backgroundColor: "#1976d2",
+                borderColor: "black",
+                color: "white",
+                borderRadius: 0,
+                boxShadow: "5px 10px #333333"
+              }}
+                href="/pageone"
+                variant="outlined"><strong>Connet Wallet</strong></Button>
+            </Box>
+          </>
+          : <>
+            <Box sx={{ flexGrow: 1 }}>
+              <Button style={{
+                width: 225,
+                borderColor: "black",
+                borderRadius: 0,
+                color: "white",
+                backgroundColor: "#1976d2",
+                margin: "1em",
+                boxShadow: "5px 10px #333333"
+              }}
+                href="/pageone"
+                variant="outlined"><strong>Buy Ticket</strong></Button>
+            </Box>
+            <Box sx={{ flexGrow: 1 }}>
+              <Button style={{
+                width: 225,
+                borderColor: "black",
+                backgroundColor: "#1976d2",
+                color: "white",
+                borderRadius: 0,
+                margin: "1em",
+                boxShadow: "5px 10px #333333"
+              }}
+                href="/pagetwo"
+                variant="outlined"><strong>Buy Scratch-Off</strong></Button>
+            </Box>
+          </>
+        }
+
       </div>
+      <GraphicBackground></GraphicBackground>
     </>
 
   );
