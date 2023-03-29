@@ -1,10 +1,19 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import React, { Fragment, useEffect, useRef } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import GraphicBackground from "../components/GraphicBackground";
-
+import { useAccount, useConnect, useEnsName } from 'wagmi'
+import { InjectedConnector } from 'wagmi/connectors/injected'
+// const provider = new ethers.JsonRpcProvider('https://8545-derricksope-scaffoldeth-yyiqw900tvt.ws-us92.gitpod.io');
 const wallet = false; // TODO: remove this is just for testing
 const Index = () => {
+
+  const { address, isConnected } = useAccount()
+  const { data: ensName } = useEnsName({ address })
+  const { connect } = useConnect({
+    connector: new InjectedConnector(),
+  });
+  console.log("address: ", address);
 
   return (
     <>
@@ -12,10 +21,10 @@ const Index = () => {
       <div style={{
         position: "absolute",
         top: "50%",
-        left: "45%",
-        display: "inline"
+        margin: "auto",
+        width: "100%"
       }}>
-        {!wallet
+        {!isConnected
           ? <>
             <Box sx={{ flexGrow: 1 }}>
               <Button style={{
@@ -26,7 +35,7 @@ const Index = () => {
                 borderRadius: 0,
                 boxShadow: "5px 10px #333333"
               }}
-                href="/pageone"
+                onClick={() => { connect(); console.log("connected: ", isConnected) }}
                 variant="outlined"><strong>Connet Wallet</strong></Button>
             </Box>
           </>

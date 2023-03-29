@@ -13,11 +13,23 @@ import CasinoIcon from '@mui/icons-material/Casino';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from "@mui/material/Toolbar";
 import Chip from "@mui/material/Chip";
+import { useAccount, useBalance, useDisconnect } from 'wagmi'
 
 const Layout = (properties: any) => {
   const { children } = properties;
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const { data, isError, isLoading } = useBalance({
+    address: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  })
+  console.log(data);
+  const { address, isConnected } = useAccount()
+  const account = useAccount({
+    onConnect({ address, connector, isReconnected }) {
+      console.log('Connected', { address, connector, isReconnected })
+    },
+  })
+  const { disconnect } = useDisconnect()
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -142,40 +154,54 @@ const Layout = (properties: any) => {
                 faqs
               </Button>
             </Box>
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Chip
-                    avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
-                    label={`${walletBalance}` + " ETH"}
-                    style={{backgroundColor: "white"}}
-                  />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Account</Typography>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">My Tickets</Typography>
-                </MenuItem>
-              </Menu>
-            </Box>
+            {isConnected
+              ? <>
+                <Box sx={{ flexGrow: 0 }}>
+                  <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Chip
+                        avatar={<Avatar alt="Natachcjfa" src="" />}
+                        label={`${data?.formatted}` + ` ${data?.symbol}`}
+                        style={{ backgroundColor: "white" }}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: '45px', textShadow: "none" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">{address}</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">Account</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">My Tickets</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={() => {disconnect(); console.log("connected: ", isConnected)}}>
+                      <Typography textAlign="center">Logout</Typography>
+                    </MenuItem>
+                  </Menu>
+                </Box>
+              </>
+              :
+              <>
+                <div></div>
+              </>
+            }
           </Toolbar>
         </Container>
       </AppBar>
